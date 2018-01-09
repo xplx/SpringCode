@@ -1,0 +1,48 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@page import="com.wnrl.servlet.allocation.AllocationHelper"%>
+<%@page import="com.wnrl.servlet.allocation.Allocation"%>
+<%@page import="com.wnrl.servlet.allocation.Allocation1"%>
+<%@page import="com.wnrl.servlet.allocation.Allocation2"%>
+<%@page import="com.wnrl.servlet.allocation.Allocation3"%>
+<%@page import="com.wnrl.servlet.allocation.Allocation4"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<base href="<%=basePath%>">
+
+<title>My JSP 'index.jsp' starting page</title>
+<script type="text/javascript" src="<%=basePath%>/js/jquery-1.12.3.min.js"></script>
+<script type="text/javascript">
+function sendXml(i) {
+		$.ajax({
+		    type: "post",
+		    url: "<%=basePath%>/sendXml",
+			dataType : "text",
+			data : {n : i},
+			success : function(result) {
+				$("#returnData").text(result);
+			}
+		});
+	}
+</script>
+</head>
+
+<body>
+	<div style="text-align: center;">
+		<button onclick="sendXml(1)">发送优先XML查询</button>
+		&nbsp;&nbsp;
+		<button onclick="sendXml(2)">发送绝对XML查询</button>
+		&nbsp;&nbsp;
+		<button onclick="sendXml(3)">发送错误XML查询</button>
+		<br> 接收数据:
+		<textarea name="returnData" id="returnData" rows="20" cols="55" style="font-size: 15px;"></textarea>
+
+	</div>
+</body>
+</html>

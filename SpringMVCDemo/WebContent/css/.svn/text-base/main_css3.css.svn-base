@@ -1,0 +1,241 @@
+@CHARSET "UTF-8";
+input{
+	border:solid 1px #79ABEC ;
+	box-shadow:0 1px 3px #97CBFF inset;
+	text-indent:5px;
+	z-index:5;
+	border-radius:5px;
+}
+input:focus{
+	box-shadow:0 0 4px rgba(255,153,164,0.8);
+	border:solid 1px #B00000;
+}
+select{
+	border:solid 1px #79ABEC ;
+	box-shadow:0 1px 3px #97CBFF inset;
+	z-index:5;
+	border-radius:5px;
+}
+textarea{
+	border:solid 1px #79ABEC ;
+	box-shadow:0 1px 3px #97CBFF inset;
+	text-indent:5px;
+	z-index:5;
+	border-radius:5px;
+}
+a {
+	text-decoration: none;
+}
+.navicatDiv{
+	width:98%;
+	height:60px;
+	margin-left: 1%;
+	margin-top: 5px;
+	margin-right: 1%;
+}
+.navicatDiv table{
+	border:0px none;
+	width:100%;
+	height:40px;
+	font-style:normal;
+	font-family: "宋体";
+	font-size: 14px;
+	font-weight:900;
+	line-height: 20px;
+}
+.navicatDiv table td:first-child{
+	width:94%;
+}
+.navicatDiv table td:nth-child(2){
+	width:6%;
+}
+.navicatDiv table td:nth-child(2) img{
+	border:0px none;
+	width:38px;
+	height:38px;
+	text-align: center;
+	vertical-align: middle;
+}
+.queryDiv{
+	width:98%;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+.dataDiv{
+	width:98%;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+.dataDiv table:first-child{
+	width:100%;
+	border:1px solid #0080FF;
+	border-collapse:collapse;
+	background-color: #FFFFFF;	
+	font-family:Arial;
+	font-weight:400;
+	font-size:12px;
+}
+.dataDiv table:first-child img{
+	border:none;
+}
+.dataDiv table:first-child th{
+	border:1px solid  	#79ABEC;	
+	background-color:   #3F88B5 ;	
+	color:#FFFFFF;
+	height:35px;				
+	padding-top:1px; 
+	padding-bottom:1px;
+	padding-left:2px; 
+	padding-right:2px;
+	text-align:left;
+	font-family:Arial;
+	font-size:12px;
+	font-weight:700;
+}
+.dataDiv table:first-child tr{
+    height:30px;
+	background-color: #FFFFFE;		
+}
+.dataDiv table:first-child tr:nth-child(2n-1){
+    height:30px;
+	background-color: #FFFFEF;	
+}
+.dataDiv table:first-child tr:hover{
+	background-color:  #C4E1FF;	
+}
+.dataDiv table:first-child td{
+	border:1px solid #79ABEC ;	
+	text-align:left;
+	padding-top:1px; 
+	padding-bottom:1px;
+	padding-left:2px; 
+	padding-right:2px;
+}
+.dataDiv table:first-child tr.empty{
+    border:1px solid #333333;
+    height:50px;
+	background-color:#f6f6ee;
+	font-family:Arial;
+	font-size:14px;
+	font-weight:700;
+}
+.dataDiv table:first-child tr.empty td{
+ 	color:#fe0202;	
+	text-align:center;
+}
+.dataDiv table:nth-child(2){
+	border:1px solid  #84C1FF;
+	border-style:none solid solid solid;
+	background-color: #A4B4C5 ;	
+	border-collapse:collapse;
+	font-family:Arial;
+	font-weight:400;
+	font-size:12px;
+	height:35px;
+	color: 	#000;
+	width:100%;
+}
+.dataDiv table:nth-child(2) img{
+	border:none;
+}
+.dataDiv table:nth-child(2) td:first-child{
+	width:35%;
+	padding-left:1%;
+}
+.dataDiv table:nth-child(2) td:nth-child(2){
+	width:30%;
+	text-align: center;
+}
+.dataDiv table:nth-child(2) td:nth-child(3){
+	width:35%;
+	text-align: right;
+}
+
+.addDiv{
+	width:98%;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+.addDiv table{
+	border:0px;
+	font-size:12px;
+	font-weight:900;
+	width:100%;
+}
+.addDiv table th{
+	font-size:14px;
+	padding-left:30%;
+	text-align:left;
+	height:40px;
+}
+.addDiv table td:first-child{
+	width:30%;
+	text-align:right;
+	height:30px;
+}
+.addDiv table td:nth-child(2){
+	width:225px;
+	text-align:left;
+	height:30px;
+}
+.addDiv table td:nth-child(2) input[type="text"]{
+	width:225px;
+}
+.addDiv table td:nth-child(2) input[type="reset"]{
+	margin-left: 13%;
+	margin-right: 13%;
+}
+.addDiv table td:nth-child(2) input[type="button"]{
+	float:right;
+}
+.addDiv table td:nth-child(3){
+	text-align:left;
+	height:30px;
+}
+.addDiv table td:nth-child(3) div{
+	text-align:left;
+}
+.errorDiv {
+	width:98%;
+	margin-left: 1%;
+	margin-right: 1%;
+	color: red;
+}
+
+/* report css start */
+.reportcss1{
+border:0px;
+font-size:12px;
+font-weight:900;
+padding-left:0%;
+}
+.reportcss2{
+border:0px;
+font-size:12px;
+font-weight:900;
+padding-left:0%;
+}
+/* report css end */
+
+/* applet css start */
+.loadingDiv{
+	position:absolute;
+	left:35%;
+	top:20%;
+}
+.cotentDiv{
+	z-index:1;
+	position:absolute;
+	left:0%;
+	top:0%;
+	width:100%;
+	height:100%;
+}
+.appletDiv{
+	position:absolute;
+	left:15%;
+	top:15%;
+	width:100%;
+	height:100%;
+}
+/*  applet css end */

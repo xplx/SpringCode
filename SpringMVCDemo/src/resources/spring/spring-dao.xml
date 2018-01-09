@@ -41,6 +41,13 @@
         <!-- 这里配置提交方式，默认就是TRUE，可以不用配置 -->
 
         <property name="defaultAutoCommit" value="${jdbc.defaultAutoCommit}"/>
+        <property name="filters" value="stat,log4j2"/>
+        <property name="proxyFilters">
+            <list>
+                <ref bean="logFilter"/>
+            </list>
+        </property>
+
     </bean>
 
     <!-- 3.配置SqlSessionFactory对象 -->
@@ -53,16 +60,22 @@
         <!-- 扫描sql配置文件:mapper需要的xml文件 -->
         <property name="mapperLocations" value="classpath:cn/com/pers/mapper/*.xml"/>
     </bean>
-    <!-- 4.配置扫描Mapper接口包，动态实现Dao接口，注入到spring容器中 -->
+
+    <!-- 4.配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 注入sqlSessionFactory -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!-- 给出需要扫描Dao接口包 -->
-        <property name="basePackage" value="cn.com.pers.mapper"/>
+        <property name="basePackage" value="cn/com/pers/mapper"/>
+    </bean>
+
+    <!-- 上面的druid的配置 -->
+    <bean id="logFilter" class="com.alibaba.druid.filter.logging.Log4j2Filter">
+        <property name="connectionLogErrorEnabled" value="true"/>
     </bean>
 
     <!-- redis配置 -->
-   <!--  <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+    <!-- <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
         最大连接数
         <property name="maxTotal" value="${redis.maxTotal}" />
         最大空闲连接数
@@ -77,9 +90,9 @@
         <property name="testOnReturn" value="${redis.testOnReturn}" />
         定时对线程池中空闲的链接进行validateObject校验
         <property name="testWhileIdle" value="true" />
-    </bean> -->
+    </bean>
 
-   <!--  <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
           p:hostName="${redis.host}"
           p:port="${redis.port}"
           p:password="${redis.pass}"

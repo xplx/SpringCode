@@ -1,0 +1,272 @@
+@CHARSET "UTF-8";
+body {
+	font: 12px/ 1.2 Arial;
+}
+input{
+	border:solid 1px #79ABEC ;
+	box-shadow:0 1px 3px #97CBFF inset;
+	text-indent:5px;
+	z-index:5;
+	border-radius:5px;
+}
+input:focus{
+	box-shadow:0 0 4px rgba(255,153,164,0.8);
+	border:solid 1px #B00000;
+}
+#save{
+	width: 70px;
+}
+#reset{
+	width: 100px;
+}
+#cancel{
+	width: 70px;
+}
+select{
+	border:solid 1px #79ABEC ;
+	box-shadow:0 1px 3px #97CBFF inset;
+	z-index:5;
+	border-radius:5px;
+}
+textarea{
+	border:solid 1px #79ABEC ;
+	box-shadow:0 1px 3px #97CBFF inset;
+	text-indent:5px;
+	z-index:5;
+	border-radius:5px;
+}
+a {
+	text-decoration: none;
+}
+.hrLine{ 
+	border:1px solid #97CBFF;
+}
+
+/* title css start */
+.navicatDiv{
+	width:98%;
+	margin-left: 1%;
+	margin-top: 15px;
+	margin-right: 1%;
+}
+.navicatDiv table{
+	border:0px none;
+	font:Arail;
+	font-style:normal;
+	font-size: 14px;
+	font-weight:900;
+}
+.navicatDiv table td {
+	text-align:left;
+}
+.navicatDiv img{
+	border: medium none;
+}
+/* title css end */
+
+/* query css start */
+.queryDiv{
+	position:relative;
+	width:98%;
+	height:30px;
+	border:solid 0px #97CBFF ;
+	padding-left:1%;
+	font-style:normal;
+	font-size: 12px;
+	font-weight:600;
+}
+.queryDiv table td{
+	font-size: 15px;
+	text-align:right;
+}
+.queryDiv input[type="text"]{
+	width:120px;
+	height: 20px;
+	line-height:22px;
+}
+/* query css end */
+
+/* datagrid css start */
+.dataDiv {
+	width:98%;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+.dataDiv img{
+	border: medium none;
+}
+
+.dataDiv table{
+	border:1px solid #0080FF;
+	border-collapse:collapse;
+	background-color: #FFFFFF;	
+	font-family:Arial;
+	font-weight:400;
+	font-size:12px;
+	width:100%;
+}
+.dataDiv table th{
+	border:1px solid  	#79ABEC;	
+	background-color:   #3F88B5 ;	
+	color:#FFFFFF;
+	height:35px;				
+	padding-top:1px; 
+	padding-bottom:1px;
+	padding-left:2px; 
+	padding-right:2px;
+	text-align:center;
+	font-family:Arial;
+	font-size:12px;
+	font-weight:700;
+}
+.dataDiv table th .b1{
+	background: url('../image/icon_sj1.png') no-repeat scroll right center transparent;
+    padding-right: 13px;
+}
+.dataDiv table th .b2 {
+    background: url('../image/icon_sj2.png') no-repeat scroll right center transparent;
+    padding-right: 13px;
+}
+.dataDiv table tr{
+	height: 30px;
+}
+.dataDiv table tr.altrow {
+    background-color: rgb(236, 245, 255);
+}
+.dataDiv table tr:hover{
+	background-color:  #C4E1FF;
+}
+.dataDiv table td{
+	border:1px solid #79ABEC ;	
+	text-align:center;
+	padding-top:1px; 
+	padding-bottom:1px;
+	padding-left:2px; 
+	padding-right:2px;
+}
+
+.dataDiv table tr.empty{
+    border:1px solid #333333;
+    height:50px;
+	background-color:#f6f6ee;
+	font-family:Arial;
+	font-size:14px;
+	font-weight:700;
+}
+.dataDiv table tr.empty td{
+ 	color:#fe0202;	
+	text-align:center;
+}
+/* datagrid css end */
+
+/* page css start */
+.pageDiv {
+	width:98%;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+.pageDiv img{
+	border: medium none;
+}
+.paganization{
+	border:1px solid  #84C1FF;
+	border-style:none solid solid solid;
+	background-color: #A4B4C5 ;	
+	border-collapse:collapse;
+	font-family:Arial;
+	font-weight:600;
+	font-size:12px;
+	height:35px;
+	color: 	#000;
+	width:100%;
+}
+.paganization td{
+	padding-left:10px;
+	padding-right: 10px;
+}
+.paganization select{
+	width:54px;
+	height:20px;
+	vertical-align: middle;
+}
+.paganization input{
+	width:36px;
+	height: 16px;
+	text-align:center;
+	vertical-align: middle;
+}
+.paganization img{
+	text-align:center;
+	vertical-align: middle;
+}
+/* page css end */
+
+/* editform css start */
+.addDiv{
+	width: 98%;
+	border: 1px solid rgb(121, 171, 236); 
+	margin:0 auto;
+}
+.addDiv table{
+	border:0px;
+	font-size:12px;
+	width:100%;
+}
+.addDiv table th{
+	font-size:14px;
+	padding-left:30%;
+	text-align:left;
+	height:40px;
+}
+.addDiv table input[type="text"]{
+	width:225px;
+	height: 22px;
+	display:block;
+	line-height:22px;
+}
+.addDiv table input[type="reset"]{
+	margin-left: 13%;
+	margin-right: 13%;
+}
+.addDiv table td {
+	height:35px;
+	text-align:left;
+}
+
+.addDiv2{
+	width: 80%;
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgb(121, 171, 236);
+}
+.addDiv2 table{
+	border:0px;
+	font-size:12px;
+	width:100%;
+}
+.addDiv2 table th{
+	font-size:14px;
+	padding-left:30%;
+	text-align:left;
+	height:40px;
+}
+.addDiv2 table input[type="text"]{
+	width:225px;
+	height: 22px;
+	display:block;
+	line-height:22px;
+}
+.addDiv2 table td {
+	height:35px;
+	text-align:left;
+}
+
+.errorDiv {
+	width:98%;
+	height:30px;
+	margin-left: 1%;
+	margin-right: 1%;
+	color: red;
+	text-align:center;
+}
+/* editform css end */

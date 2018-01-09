@@ -1,0 +1,38 @@
+
+function pSizeChange(reqURL){
+	var pageSize = $("#pSize").val();
+	$("#pageSize").val(pageSize);
+	var totalPageVal = $.trim($("#pageCount").val());
+	var tmp = "page=1&pageCount="+totalPageVal+"&pageSize="+pageSize;
+	reqURL += tmp;
+	window.location.href =reqURL;
+};
+function toPointPage(reqURL) {
+	var r=/^[0-9]*[1-9][0-9]*$/;     
+	var pageVal = $("#goPage").val().trim();
+	var totalPageVal = $("#pageCount").val().trim();
+	if (pageVal.length<1 ) {
+		alert(pageTip1);					
+		$("#goPage").val("").focus();
+		return;
+	} else if(isNaN(pageVal)) {
+		alert(pageTip2);
+		$("#goPage").val("").focus();
+		return;
+	}else if(Number(pageVal)<=0){
+		alert(pageTip3);
+		$("#goPage").val("").focus();
+		return;
+	}else if(!r.test(pageVal)){
+		alert(pageTip3);
+		$("#goPage").val("").focus();
+		return;
+	}else if(Number(pageVal)>Number(totalPageVal)){
+		alert(pageTip4);
+		$("#goPage").val("").focus();
+		return;
+	}
+	var tmp = "page="+pageVal+"&pageCount="+totalPageVal+"&pageSize="+$("#pageSize").val();
+	reqURL += tmp;
+	window.location.href =reqURL;
+};

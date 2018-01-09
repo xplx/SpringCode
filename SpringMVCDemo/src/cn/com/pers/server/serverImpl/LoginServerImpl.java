@@ -5,16 +5,18 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
-
 import cn.com.pers.mapper.LoginMapper;
 import cn.com.pers.model.Login;
 import cn.com.pers.server.LoginServer;
 
 @Service
 public class LoginServerImpl implements LoginServer {
-	Logger logger = Logger.getLogger(LoginServerImpl.class);
+	//注意选择包
+	//Logger logger = Logger.getLogger(LoginServerImpl.class);
+	static Logger logger = LogManager.getLogger(LoginServerImpl.class.getName());
 
 	@Resource
 	private LoginMapper loginM;
@@ -42,8 +44,10 @@ public class LoginServerImpl implements LoginServer {
 
 		} catch (Exception e) {
 			// TODO: handle exception
-			logger.debug("登录失败"+e);
-			
+			logger.info("登录失败"+e);
+			logger.error("登录失败"+e);
+			map.put("success", "登录失败");
+			return map;
 		}
 		map.put("success", login);
 		logger.debug("登录成功");
