@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:task="http://www.springframework.org/schema/task"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
       http://www.springframework.org/schema/beans/spring-beans.xsd
       http://www.springframework.org/schema/context
       http://www.springframework.org/schema/context/spring-context.xsd
@@ -13,25 +10,38 @@
       http://www.springframework.org/schema/task
       http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
-    <!-- 扫描service包下所有使用注解的类型 -->
-    <!-- xyz.windback为我们应用的包名,当然也是我们前面提到过的GroupId -->
-    <context:component-scan base-package="cn.com.pers" />
+	<!-- 扫描service包下所有使用注解的类型 -->
+	<!-- xyz.windback为我们应用的包名,当然也是我们前面提到过的GroupId -->
+	<context:component-scan base-package="cn.com.pers" />
 
-    <!-- 配置事务管理器 -->
-    <bean id="transactionManager"
-          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <!-- 注入数据库连接池 -->
-        <property name="dataSource" ref="dataSource" />
-    </bean>
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- 注入数据库连接池 -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 
-    <!-- 配置基于注解的声明式事务 -->
-    <tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- 配置基于注解的声明式事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
-    <bean id="sessionFilter" class="cn.com.pers.utils.SessionFilter">
-    </bean>
+	<bean id="sessionFilter" class="cn.com.pers.utils.SessionFilter">
+	</bean>
 
-    <!-- 开启这个配置，spring才能识别@Scheduled注解 -->
-    <task:annotation-driven scheduler="qbScheduler" mode="proxy"/>
-    <task:scheduler id="qbScheduler" pool-size="10"/>
+	<!-- 开启这个配置，spring才能识别@Scheduled注解 -->
+	<task:annotation-driven scheduler="qbScheduler" mode="proxy" />
+	<task:scheduler id="qbScheduler" pool-size="10" />
+
+	<!-- Hessian入门(与Spring集成) -->
+	<beans>
+		<!-- 接口的具体实现类 -->
+		<bean id="impl" class="cn.com.pers.Hessian.IsayImpl" />
+		<!-- 使用Spring的HessianServie做代理 -->
+		<bean name="/helloSpring" class="org.springframework.remoting.caucho.HessianServiceExporter">
+			<!-- service引用具体的实现实体Bean -->
+			<property name="service" ref="implServer" />
+			<property name="serviceInterface" value="cn.com.pers.Hessian.Isay" />
+		</bean>
+
+		<!-- 可以配置多个HessianServiceExporter代理Bean -->
+	</beans>
 
 </beans>
