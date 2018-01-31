@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	<!-- 配置整合mybatis过程 -->
+	<!-- 1.配置数据库相关参数properties的属性：${url} -->
+	<!-- 使用数据库配置文件解耦 -->
+	<!-- <context:property-placeholder location="classpath:resources/jdbc.properties" file-encoding="UTF-8" ignore-unresolvable="true" /> -->
+
+	<!-- 并列配置多个文件 -->
+	<bean id="myProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:resources/jdbc.properties</value>
+				<value>classpath:/resources/comm.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 获取配置参数，在myProperties中配置的参数，在此通过${url}都能获取 -->
+	<bean id="commUtil" class="cn.com.pers.utils.ConfParameterUtil" init-method="init">
+		<property name="ssoTimeOut" value="${ssoTimeOut}" />
+		<property name="basUrl" value="${jdbc.driver}" />
+	</bean>
+	<!-- 下面的druid配置都是基本配置 -->
+	<!-- 2.数据库连接池 -->
+	<bean id="dataSource" class="cn.com.pers.support.PrivateDataSource" init-method="init" destroy-method="close">
+		<!-- 配置连接池属性 -->
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<property name="minIdle" value="${jdbc.minIdle}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
+
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="${jdbc.maxWait}" />
+
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" />
+
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}" />
+
+
+		<!-- 这里配置提交方式，默认就是TRUE，可以不用配置 -->
+
+		<property name="defaultAutoCommit" value="${jdbc.defaultAutoCommit}" />
+		<property name="filters" value="stat,log4j2" />
+		<property name="proxyFilters">
+			<list>
+				<ref bean="logFilter" />
+			</list>
+		</property>
+
+	</bean>
+
+	<!-- 3.配置SqlSessionFactory对象 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 注入数据库连接池 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 扫描entity包 使用别名 -->
+		<!-- 是我的应用程序的实体包名,你们需要使用你们自己的包名,也就是前面我们提到过的GroupId -->
+		<property name="typeAliasesPackage" value="cn.com.pers.model" />
+		<!-- 扫描sql配置文件:mapper需要的xml文件 -->
+		<property name="mapperLocations" value="classpath:cn/com/pers/mapper/*.xml" />
+	</bean>
+
+	<!-- 4.配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 注入sqlSessionFactory -->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+		<!-- 给出需要扫描Dao接口包 -->
+		<property name="basePackage" value="cn/com/pers/mapper" />
+	</bean>
+
+	<!-- 上面的druid的配置 -->
+	<bean id="logFilter" class="com.alibaba.druid.filter.logging.Log4j2Filter">
+		<property name="connectionLogErrorEnabled" value="true" />
+	</bean>
+
+	<!-- redis配置 -->
+	<!-- <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig"> 最大连接数 <property name="maxTotal" value="${redis.maxTotal}" /> 最大空闲连接数 <property name="maxIdle" 
+		value="${redis.maxIdle}" /> 初始化连接数 <property name="minIdle" value="${redis.minIdle}"/> 最大等待时间 <property name="maxWaitMillis" value="${redis.maxWaitMillis}" /> 对拿到的connection进行validateObject校验 
+		<property name="testOnBorrow" value="${redis.testOnBorrow}" /> 在进行returnObject对返回的connection进行validateObject校验 <property name="testOnReturn" value="${redis.testOnReturn}" 
+		/> 定时对线程池中空闲的链接进行validateObject校验 <property name="testWhileIdle" value="true" /> </bean> <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" 
+		p:hostName="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}" p:poolConfig-ref="poolConfig" p:database="1" /> <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"> 
+		<property name="connectionFactory" ref="connectionFactory" /> 如果不配置Serializer，那么存储的时候智能使用String，如果用User类型存储，那么会提示错误User can't cast to String！！！ <property name="keySerializer"> 
+		<bean class="org.springframework.data.redis.serializer.StringRedisSerializer" /> </property> <property name="valueSerializer"> <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" 
+		/> </property> </bean> -->
+</beans>

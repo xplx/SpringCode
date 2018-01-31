@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,7 +27,7 @@ public class LoginConntroller {
 	private LoginServer loginServer;
 
 	/**
-	 * 返回json示例
+	 * 返回json示例,用于app请求
 	 *
 	 * @return
 	 */
@@ -43,7 +44,7 @@ public class LoginConntroller {
 			Login login = JSONUtil.toBean(parm, Login.class);
 			String password = login.getPassword();
 			String username = login.getUsername();
-			//使用get方式
+			// 使用get方式
 			// String username = request.getParameter("username");
 			// String password = request.getParameter("password");
 			map = loginServer.login(username, password);
@@ -57,4 +58,12 @@ public class LoginConntroller {
 
 		return map;
 	}
+
+	@RequestMapping(value = "/tologin")
+	public String toLogin(Model model) {
+		logger.info("跳转到登录页开始");
+		model.addAttribute("modelKey", "modelValue");
+		return "login";
+	}
+
 }
